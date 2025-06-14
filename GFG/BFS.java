@@ -1,3 +1,4 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -7,7 +8,7 @@ public class BFS {
         // code here
         /*We will be required 3 things
         1.Queue for further processsings storage
-        2. Visitd array for checking if they had travesered before or not
+        2. Visited array for checking if they had travesered before or not
         3. Then a result list which will store the traversed values in order 
         
         I will put the node 0 in queue
@@ -48,5 +49,40 @@ public class BFS {
             
         }
         return result;
+    }
+
+      public ArrayList<Integer> bfs_(ArrayList<ArrayList<Integer>> adj) {
+        // code here
+        /* Adjacency list hai toh 
+        Visited array bnao 
+        Queue bnao 
+        Resultant list bnao 
+        */
+        
+         ArrayList<Integer>  result = new ArrayList<>();
+         
+         int size = adj.size();
+         Queue<Integer> queue = new ArrayDeque<>();
+         
+         int[] visited = new int[size];
+         
+         queue.add(0);
+         visited[0] = 1;
+         
+         while(! queue.isEmpty())
+         {
+            int processor = queue.poll();
+            for(int element : adj.get(processor))
+            {   
+                if(visited[element] == 0)
+                {
+                queue.add(element);
+                visited[element] = 1 ;
+                }
+            }
+            result.add(processor);
+         }
+         
+         return result;
     }
 }
